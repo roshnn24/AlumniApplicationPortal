@@ -1,4 +1,4 @@
-import mysql.connector as sql
+import mysql.connector as sqltor
 from mysql.connector import IntegrityError
 
 mycon1 = sqltor.connect(host='localhost', user='root', passwd='1234', database='vnps')
