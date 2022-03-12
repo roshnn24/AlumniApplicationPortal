@@ -92,9 +92,10 @@ def user():
         row = cur3.fetchone()
         if (user1, passw) in data:
             print("You are logged in as user\n")
-            n, d, em, b, a, e = row
+            n, d, y, em, b, a, e = row
             print(f'''Name: {n}
 Date of birth: {d}
+Year of graduation: {y}
 Email: {em}
 Blood Group: {b}
 Address: {a}
@@ -112,3 +113,5 @@ def user_menu():
     if ch == 3:
         chat.cht()
         user_menu()
+    if ch == 2:
+        mail.user_reset()

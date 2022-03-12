@@ -50,7 +50,8 @@ def user_reset():
     st = "SELECT * FROM admno WHERE Name = '{}'".format(name.title())
     cur1.execute(st)
     data = cur1.fetchall()
-    a, b = data
+    for i in data:
+        a, b = i
     if admno == b:
         remail = input("Enter your email address: ")
         with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
@@ -67,6 +68,6 @@ def user_reset():
 
             smtp.sendmail('alumni.management.sys@gmail.com', remail, msg)  # used to send the mail
             print('Password reset information sent to your mail successfully\n\n')
-            pass_reset.change()
+            pass_reset.uchange()
     else:
         print('Incorrect admission no !! Please contact the admin...')
