@@ -25,6 +25,7 @@ def user():
 
 
 def confirm():
+    e = input('Enter receiver mail address: ')
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
         smtp.starttls()
@@ -37,5 +38,5 @@ def confirm():
 
         msg = f'Subject: {subject}\n\n{body}'
 
-        smtp.sendmail('alumni.management.sys@gmail.com', m, msg)
+        smtp.sendmail('alumni.management.sys@gmail.com', e, msg)
 

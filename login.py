@@ -66,7 +66,9 @@ def admin_menu():
         admin_menu()
     elif n == 7:
         addinfo.adduser()
-        new_user.confirm()
+        c = input('Enter confirmation mail to user?(y/n): ')
+        if c.lower() == 'y':
+            new_user.confirm()
         admin_menu()
     elif n == 8:
         view.data()
