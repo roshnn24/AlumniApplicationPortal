@@ -23,3 +23,24 @@ def change():
             continue
     else:
         print('Incorrect OTP entered!!!')
+
+
+def uchange():
+    otp = int(input('Enter the OTP sent to your mail: '))
+    n = input('Enter you name again for confirmation: ')
+    while mail.number == otp:
+        new = input('Enter new password: ')
+        new1 = input('Confirm new password: ')
+        if new == new1:
+            st = "UPDATE userlogin SET password='{}' WHERE Name='{}'".format(new, n.title())
+            cur2.execute(st)
+            conn.commit()
+            conn.close()
+            print('Password changed successfully\n\n')
+            login.user()
+            break
+        else:
+            print('Passwords do not match!!. Try again')
+            continue
+    else:
+        print('Incorrect OTP entered!!!')
