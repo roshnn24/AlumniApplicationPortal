@@ -71,3 +71,24 @@ def user_reset():
             pass_reset.uchange()
     else:
         print('Incorrect admission no !! Please contact the admin...')
+
+
+def reg():
+    na1 = input('Enter your name: ')
+    y = int(input("Enter your year of graduation (YYYY): "))
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.ehlo()  # establishes connection with the SMTP server
+        smtp.starttls()  # data encryption
+        smtp.ehlo()
+
+        smtp.login('alumni.management.sys@gmail.com', 'Jesus@25')  # logs in the mail ID with SMTP server
+
+        subject = f'Registration Request'
+        body = '''A new user has requested you for access to alumni application
+        Name:'{}'
+        Year of graduation:{}'''.format(na1, y)
+
+        msg = f'Subject: {subject}\n\n{body}'
+
+        smtp.sendmail('alumni.management.sys@gmail.com', 'roshauninfant@gmail.com', msg)  # used to send the mail
+        print('Request to join alumni application sent to ADMIN. Please wait for confirmation...\n\n')

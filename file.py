@@ -1,5 +1,6 @@
 import mysql.connector as sqltor
 import login
+import mail
 import new_user
 from art import *
 mycon = sqltor.connect(host='localhost', user='root', passwd='1234', database='vnps')
@@ -24,7 +25,7 @@ elif n == 2:
 2. New User""")
     op = int(input("Enter Option: "))
     if op == 2:
-        new_user.user()
+        mail.reg()
     elif op == 1:
         login.user()
 else:

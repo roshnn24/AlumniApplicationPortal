@@ -6,6 +6,7 @@ import new_user
 import search
 import view
 import chat
+import modify
 mycon1 = sqltor.connect(host='localhost', user='root', passwd='1234', database='vnps')
 cur1 = mycon1.cursor()
 st1 = f"SELECT * FROM userlogin"
@@ -65,10 +66,7 @@ def admin_menu():
         view.alumni()
         admin_menu()
     elif n == 7:
-        addinfo.adduser()
-        c = input('Enter confirmation mail to user?(y/n): ')
-        if c.lower() == 'y':
-            new_user.confirm()
+        new_user.confirm()
         admin_menu()
     elif n == 8:
         view.data()
@@ -76,7 +74,18 @@ def admin_menu():
     elif n == 9:
         chat.notify()
         admin_menu()
-
+    elif n == 4:
+        na = input('Enter user name to be deleted: ')
+        mycon12 = sqltor.connect(host='localhost', user='root', passwd='1234', database='vnps')
+        cur12 = mycon12.cursor()
+        cur13 = mycon12.cursor()
+        st4 = "DELETE FROM userlogin WHERE Name= '{}'".format(na)
+        st5 = "DELETE FROM alumni1 WHERE Name= '{}'".format(na)
+        cur12.execute(st4)
+        cur13.execute(st5)
+        mycon12.commit()
+        print("User deleted!!")
+        admin_menu()
 
 def user():
     global row
@@ -110,10 +119,15 @@ Employment Status: {e}\n\n''')
 def user_menu():
     print('''1.Update personal data
 2.Change Password
-3.Leave message to admin''')
+3.Leave message to admin
+4.View other alumni''')
     ch = int(input("Enter choice: "))
     if ch == 3:
         chat.cht()
         user_menu()
-    if ch == 2:
+    elif ch == 2:
         mail.user_reset()
+    elif ch == 1:
+        modify.u_update()
+    elif ch == 4:
+        view.data()
